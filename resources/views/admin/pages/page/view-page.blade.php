@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 @section('title')
    Page view
 @endsection 
@@ -27,13 +27,8 @@
                     <tr>
                         <td>Type</td>
                         <td>:</td>
-                        <td>{{ $view->type == 1 ? 'Blog' : 'Page' }}</td>
-                    </tr> 
-                    <tr>
-                        <td>Thumbnail</td>
-                        <td>:</td>
-                        <td><img src="{{ asset('storage'. $view->thumb) }}" width="200" alt="page-image"></td>
-                    </tr>
+                        <td>{{ $view->type }}</td>
+                    </tr>  
                     <tr>
                         <td>Content</td>
                         <td>:</td>

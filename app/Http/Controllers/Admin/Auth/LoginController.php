@@ -17,8 +17,12 @@ class LoginController extends Controller
      */
     public function  loginView()
     {
-        if(auth()->check()){
-            return redirect()->route('backend.home');
+        if(auth()->check() ){
+            if(auth()->user()->is_admin === 1){
+                return redirect()->route('admin.home');
+            }else{
+                return redirect()->route('index');
+            } 
         }
          return view('admin.auth.login');
     }

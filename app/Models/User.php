@@ -27,6 +27,7 @@ class User extends Authenticatable
         'country',
         'teacher_name', 
         'password',
+        'photo',
     ];
 
     /**

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 @section('title')
    Pages
 @endsection
@@ -22,8 +22,7 @@
                 <th>No</th>
                 <th>Title</th>
                 <th>Type</th> 
-                <th>slug</th> 
-                <th>Thumbnail</th> 
+                <th>slug</th>  
                 <th>Action</th>
             </tr>
         </thead>
@@ -51,13 +50,7 @@
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
             {data: 'title', name: 'title'},  
             {data: 'type', name: 'type'},  
-            {data: 'slug', name: 'slug'},   
-            {
-                data: 'thumb', 
-                name: 'Thumbnail', 
-                orderable: true, 
-                searchable: true
-            },
+            {data: 'slug', name: 'slug'},    
             {
                 data: 'action', 
                 name: 'action', 

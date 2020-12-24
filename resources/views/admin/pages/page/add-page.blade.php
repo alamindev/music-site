@@ -1,7 +1,7 @@
- @extends('layouts.app')
+ @extends('admin.layouts.app')
 
 @section('title')
-   Add new page or post
+   Add new page
 @endsection
 
 @section('style')
@@ -26,25 +26,18 @@
                             @endif   
                         </div>      
                         <div class="form-group">
-                            <label for="category" class=" form-control-label">Select Type <span class="text-danger">*</span></label>
-                           <select required data-placeholder="Choose Type" name="type_id" id="category" class="form-control">
+                            <label for="category" class=" form-control-label">Select Position <span class="text-danger">*</span></label>
+                           <select required data-placeholder="Choose Position" name="type" id="category" class="form-control">
                                <option value="" ></option> 
-                               <option value="0">Page</option> 
-                               <option value="1">Blog</option> 
+                               <option value="header">Top Header</option> 
+                               <option value="footer">Footer</option> 
                            </select>
-                            @if($errors->has('type_id'))
-                                <div class="text-danger">{{ $errors->first('type_id') }}</div>
+                            @if($errors->has('type'))
+                                <div class="text-danger">{{ $errors->first('type') }}</div>
                             @endif   
-                        </div>    
+                        </div>        
                         <div class="form-group">
-                            <label for="thumb" class=" form-control-label">Upload Photo<span class="text-danger">*</span></label>
-                           <input  type="file" name="thumb"   id="thumb" class="form-control" />
-                            @if($errors->has('thumb'))
-                                <div class="text-danger">{{ $errors->first('thumb') }}</div>
-                            @endif   
-                        </div>      
-                        <div class="form-group">
-                            <label for="content" class="form-control-label">Description<span class="text-danger">(optional)</span></label>
+                            <label for="content" class="form-control-label">Description<span class="text-danger">*</span></label>
                             <textarea name="content" id="content" class="form-control"></textarea>
                         </div> 
                           <div class="form-group">
@@ -65,9 +58,9 @@
 <script>
 
      CKEDITOR.replace('content', { 
-            filebrowserUploadUrl: "{{asset('/page/uploads?_token=' . csrf_token()) }}&type=file", 
-            imageUploadUrl: "{{asset('/page/uploads?_token='. csrf_token() )  }}&type=image",
-            filebrowserBrowseUrl: "{{asset('/page/file_browser') }}",
+            filebrowserUploadUrl: "{{asset('admin/page/uploads?_token=' . csrf_token()) }}&type=file", 
+            imageUploadUrl: "{{asset('admin/page/uploads?_token='. csrf_token() )  }}&type=image",
+            filebrowserBrowseUrl: "{{asset('admin/page/file_browser') }}",
             filebrowserUploadMethod: 'form' 
 		}); 
     jQuery("#category").chosen({ 

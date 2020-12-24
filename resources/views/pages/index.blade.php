@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+    Home
+@endsection
 @section('content')
    <!-- Start Others Option For Responsive -->
         <div class="others-option-for-responsive">
@@ -25,40 +27,40 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- End Others Option For Responsive -->
-    </div>
-    <!-- End Navbar Area -->
-
-    <!-- Start Banner Area -->
-
+        </div> 
+    </div>  
     <section class="banner-area f5f6fa-bg-color">
         <img class="banner-area-two-img" src="{{ asset('images/inner_hero_05.png') }}" alt="">
-
+    @if(!empty($banner))
         <div class="container-fluid social">
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="banner-content">
-                        <h1 class="wow fadeInDown" data-wow-delay="1s">PDF Band Music</h1>
-                        <h2 class="wow fadeInDown" data-wow-delay="1s">Practice and Play Along Website</h2>
-                        <p class="wow fadeInUp" data-wow-delay="1s">Take your time and explore this exciting new practice tool. You will find all exercises from the Sound Fundamentals Band Method Books as well as sheet music from the PDF Band Music library. Have Fun!</p>
+                        <h1 class="wow fadeInDown" data-wow-delay="1s">@if($banner->title){{ $banner->title }} @else  PDF Band Music @endif</h1>
+                        <h2 class="wow fadeInDown" data-wow-delay="1s"> @if($banner->subtitle){{ $banner->subtitle }} @else  Practice and Play Along Website @endif</h2>
+                        <p class="wow fadeInUp" data-wow-delay="1s">@if($banner->details){{ $banner->details }} @else  Take your time and explore this exciting new practice tool. You will find all exercises from the Sound Fundamentals Band Method Books as well as sheet music from the PDF Band Music library. Have Fun! @endif</p>
 
-                        <a href="login.html" class="default-btn wow fadeInLeft" data-wow-delay="0.9s"> 
-                            Login
-                            
+                        <a href="{{ $banner->btn_link }}" class="default-btn wow fadeInLeft" data-wow-delay="0.9s"> 
+                             {{ $banner->btn_text }}
                         </a>
                     </div>
                 </div>
 
                 <div class="col-lg-6">
                     <div class="banner-img wow fadeInRight" data-wow-delay="1s">
-                        <img src="{{ asset('images/hero.jpg') }}" alt="Image">
+                    @if($banner->title)
+                      <img    src="{{ url('storage'. $banner->image) }}" alt="banner image"> 
+                    @else  
+                    <img src="{{ asset('images/hero.jpg') }}" alt="Image">
+                    @endif
+                       
                     </div>
                 </div>
             </div>
 
 
         </div>
+        @endif
     </section>
     <!-- End Banner Area -->
 
@@ -107,9 +109,7 @@
 
 
     </section>
-    <!-- End Affordable Area -->
-
-    <!-- Start Education Area -->
+    <!-- End Affordable Area --> 
     <section class="education-area-two  f5f6fa-bg-color  ptb-100 ">
         <img class="education-area-two-img" src="{{ asset('images/inner_hero_04.png') }}" alt="">
 

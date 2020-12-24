@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -70,6 +72,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $request = request();
+        $photo = $this->upload_photos($request);
         return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
@@ -81,6 +85,19 @@ class RegisterController extends Controller
             'country' => $data['country'],
             'teacher_name' => $data['teacher_name'],
             'password' => Hash::make($data['password']),
+            'photo' => $photo,
         ]);
+    }
+     private function upload_photos($request)
+    { 
+       if ($request->has('photo')) {  
+                $image = $request->file('photo'); 
+                $name = 'photo_'.time();   
+                $folder = '/uploads/users/'; 
+                $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();  
+                $name = !is_null($name) ? $name : Str::random(25); 
+                $image->storeAs($folder, $name.'.'.$image->getClientOriginalExtension(), 'public');
+                return $filePath; 
+            } 
     }
 }

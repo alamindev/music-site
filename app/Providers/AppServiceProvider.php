@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Providers;
-
+use DB;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +23,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+       View::composer(['layouts.header', 'layouts.footer','layouts.app'], function ($view) {
+
+            $setting = DB::table('settings')->first();
+            $address = DB::table('social_infos')->first();
+            $pages = DB::table('pages')->get();
+
+              $view->with('setting', $setting);
+              $view->with('address', $address);
+              $view->with('pages', $pages);
+
+        });
     }
 }

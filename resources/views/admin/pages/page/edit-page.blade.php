@@ -1,4 +1,4 @@
- @extends('layouts.app')
+ @extends('admin.layouts.app')
 
 @section('title')
    Update page
@@ -26,27 +26,19 @@
                             @endif   
                         </div>      
                         <div class="form-group">
-                            <label for="type" class=" form-control-label">Select Type <span class="text-danger">*</span></label>
-                           <select required data-placeholder="Choose Type" name="type_id" id="type" class="form-control">
+                            <label for="type" class=" form-control-label">Select Position <span class="text-danger">*</span></label>
+                           <select required data-placeholder="Choose Position" name="type" id="type" class="form-control">
                                <option value="" ></option> 
-                               <option value="0" @if($edit->type == 0) selected @endif >Page</option> 
-                               <option value="1" @if($edit->type == 1) selected @endif>Blog</option> 
+                               <option value="header" @if($edit->type == 'header') selected @endif >Top Header</option> 
+                               <option value="footer" @if($edit->type == 'footer') selected @endif>Footer</option> 
                            </select>
-                            @if($errors->has('type_id'))
-                                <div class="text-danger">{{ $errors->first('type_id') }}</div>
+                            @if($errors->has('type'))
+                                <div class="text-danger">{{ $errors->first('type') }}</div>
                             @endif   
-                        </div>    
+                        </div>         
                         <div class="form-group">
-                            <label for="thumb" class=" form-control-label">Upload Photo<span class="text-danger">*</span></label>
-                           <input  type="file" name="thumb"   id="thumb" class="form-control" />
-                           <img src="{{ asset('storage'. $edit->thumb) }}" width="200" alt="page-image" class="py-2">
-                            @if($errors->has('thumb'))
-                                <div class="text-danger">{{ $errors->first('thumb') }}</div>
-                            @endif   
-                        </div>      
-                        <div class="form-group">
-                            <label for="content" class="form-control-label">Description<span class="text-danger">(optional)</span></label>
-                            <textarea name="content" id="content" class="form-control">{{ $edit->title }}</textarea>
+                            <label for="content" class="form-control-label">Description<span class="text-danger">*</span></label>
+                            <textarea name="content" id="content" class="form-control">{{ $edit->content }}</textarea>
                         </div> 
                         <div class="form-group">
                             <label for="keyword" class=" form-control-label">keyword <span class="text-danger">(optional)</span></label>
@@ -65,9 +57,9 @@
 <script src="{{ asset('assets/js/lib/chosen/chosen.jquery.min.js') }}"></script>    
 <script>
        CKEDITOR.replace('content', { 
-            filebrowserUploadUrl: "{{asset('/page/uploads?_token=' . csrf_token()) }}&type=file", 
-            imageUploadUrl: "{{asset('/page/uploads?_token='. csrf_token() )  }}&type=image",
-            filebrowserBrowseUrl: "{{asset('/page/file_browser') }}",
+            filebrowserUploadUrl: "{{asset('admin/page/uploads?_token=' . csrf_token()) }}&type=file", 
+            imageUploadUrl: "{{asset('admin/page/uploads?_token='. csrf_token() )  }}&type=image",
+            filebrowserBrowseUrl: "{{asset('admin/page/file_browser') }}",
             filebrowserUploadMethod: 'form' 
 		}); 
     jQuery("#type").chosen({ 

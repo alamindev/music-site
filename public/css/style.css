@@ -7094,5 +7094,19 @@ product-view-one
     width: 20px;
 }
 
+table {
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table td {
+    padding: 6px;
+}
+
 
 /*# sourceMappingURL=style.css.map */

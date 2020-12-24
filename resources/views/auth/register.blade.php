@@ -12,13 +12,13 @@
                 </div>
 
                 <div class="contact-form-action">
-                     <form method="POST" action="{{ route('register') }}">
+                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="first_name">First name</label>
-                                    <input id="first_name" required class="form-control @error('first_name') is-invalid @enderror" type="text" name="first_name">
+                                    <input id="first_name" required class="form-control @error('first_name') is-invalid @enderror" type="text" name="first_name"  value="{{ old('first_name') }}">
                                     @error('first_name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -29,7 +29,7 @@
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="last_name">Last name</label>
-                                    <input id="last_name" required class="form-control @error('last_name') is-invalid @enderror" type="text" name="last_name">
+                                    <input id="last_name" required class="form-control @error('last_name') is-invalid @enderror" type="text" name="last_name"  value="{{ old('last_name') }}">
                                      @error('last_name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -40,7 +40,7 @@
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="email">Email address</label>
-                                    <input id="email" required class="form-control @error('email') is-invalid @enderror" type="email" name="email">
+                                    <input id="email" required class="form-control @error('email') is-invalid @enderror" type="email" name="email"  value="{{ old('email') }}">
                                      @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -62,7 +62,7 @@
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="school_name">School name</label>
-                                    <input id="school_name" required class="form-control @error('school_name') is-invalid @enderror" type="text" name="school_name">
+                                    <input id="school_name" required class="form-control @error('school_name') is-invalid @enderror" type="text" name="school_name" value="{{ old('school_name') }}">
                                     @error('school_name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -73,7 +73,7 @@
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="city">City</label>
-                                    <input id="city" required class="form-control @error('city') is-invalid @enderror" type="text" name="city">
+                                    <input id="city" required class="form-control @error('city') is-invalid @enderror" type="text" name="city"  value="{{ old('city') }}">
                                     @error('city')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -84,7 +84,7 @@
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="state">State</label>
-                                    <input id="state" required class="form-control @error('state') is-invalid @enderror" type="text" name="state">
+                                    <input id="state" required class="form-control @error('state') is-invalid @enderror" type="text" name="state"  value="{{ old('state') }}">
                                     @error('state')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -95,7 +95,7 @@
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="country">Country</label>
-                                    <input id="country"  required class="form-control @error('country') is-invalid @enderror" type="text" name="country">
+                                    <input id="country"  required class="form-control @error('country') is-invalid @enderror" type="text" name="country"  value="{{ old('country') }}">
                                     @error('country')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -106,7 +106,13 @@
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="teacher_name">Music Teacher Name </label>
-                                     <input class="form-control" type="text" name="teacher_name" placeholder="(Optional)"> 
+                                     <input class="form-control" type="text" name="teacher_name" placeholder="(Optional)"  value="{{ old('teacher_name') }}"> 
+                                </div>
+                            </div>   
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="photo">Photo <span>(Optional)</span></label>
+                                     <input class="form-control" type="file" name="photo" > 
                                 </div>
                             </div>   
                          <div class="col-12 col-md-6">

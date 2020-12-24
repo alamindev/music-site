@@ -1,5 +1,7 @@
 @extends('admin.layouts.app')
-
+@section('title')
+    Dashboard
+@endsection
 @section('content')
 <div class="content">
     <!-- Animated -->
@@ -15,8 +17,8 @@
                             </div>
                             <div class="stat-content">
                                 <div class="text-left dib">
-                                    <div class="stat-text"><span class="count">2986</span></div>
-                                    <div class="stat-heading">Clients</div>
+                                    <div class="stat-text"><span class="count">{{ $user_count }}</span></div>
+                                    <div class="stat-heading">Students</div>
                                 </div>
                             </div>
                         </div>

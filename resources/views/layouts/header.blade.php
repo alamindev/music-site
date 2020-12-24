@@ -15,8 +15,12 @@
     <div class="navbar-area navbar-area-two">
         <!-- Menu For Mobile Device -->
         <div class="mobile-nav">
-            <a href="index.html" class="logo">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo">
+            <a href="{{ route('index') }}" class="logo">
+                @if($setting->site_logo != null)
+                <img width="130" src="{{ url('storage'. $setting->site_logo) }}" alt="Logo">
+                @else
+                Logo
+                @endif
             </a>
         </div>
 
@@ -24,9 +28,13 @@
         <div class="main-nav">
             <div class="container-fluid">
                 <nav class="navbar navbar-expand-md">
-                    <a class="navbar-brand" href="index.html">
-                        <img src="{{ asset('images/logo.png') }}" alt="Logo">
-                    </a>
+                      <a href="{{ route('index') }}" class="logo">
+                        @if($setting->site_logo != null)
+                            <img width="120" src="{{ url('storage'. $setting->site_logo) }}" alt="Logo">
+                            @else
+                            Logo
+                            @endif
+                        </a>
 
                     <div class="collapse navbar-collapse mean-menu">
                         <ul class="navbar-nav ml-auto mr-3">
@@ -34,18 +42,22 @@
                                 <a href="{{ route('index') }}" class="nav-link">
 									Home
 								</a>
-                            </li>
-
+                            </li> 
                             <li class="nav-item">
-                                <a href="practice-record.html" class="nav-link">
-									Practice Record
-								</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="1_book.html" class="nav-link">
+                                <a href="{{ route('step.book') }}" class="nav-link">
 									Choose Exercises
 								</a>
                             </li> 
+                        @foreach($pages as $page)
+                            @if($page->type == 'header')
+                            <li class="nav-item">
+                                <a href="{{ route('page', $page->slug) }}" class="nav-link">
+                                    {{ $page->title }}
+								</a>
+                            </li> 
+                            @endif
+                        @endforeach
+
 
    @guest
                             <li class="nav-item">
@@ -70,7 +82,11 @@
                              <div class="header-menu"> 
                             <div class="user-area dropdown float-right">
                                 <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img class="user-avatar rounded-circle" width="40" src="{{ asset('assets/images/admin.jpg') }}" alt="User Avatar">
+                                      @if(auth()->user()->photo == null)
+                            <img class="user-avatar rounded-circle" width="40" src="{{ asset('assets/images/admin.jpg') }}" alt="User Avatar"> 
+                        @else
+                            <img class="user-avatar rounded-circle" width="40" src="{{ url('storage'. auth()->user()->photo) }}" alt="User Avatar"> 
+                        @endif
                                 </a>
 
                                 <div class="user-menu dropdown-menu">

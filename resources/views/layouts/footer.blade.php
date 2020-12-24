@@ -8,20 +8,21 @@
                         <h3>Find Us</h3>
 
                         <ul class="address">
-                            <li class="location">
-                                <i class="bx bxs-location-plus"></i> 11341 N Avondale Loop, Hayden Lake ID USA
-                            </li>
-
-                            <li>
-                                <i class="bx bxs-envelope"></i>
-                                <a href="mailto:hello@Flute.com">support@pdfbandmusic.com</a>
-                            </li>
-
-                            <li>
-                                <i class="bx bxs-phone-call"></i>
-                                <a href="tel:+1(514)312-5678">+1(208)635-5209
-                                </a>
-                            </li>
+                           @if(!empty($address) &&  $address->address_datas != '')
+                                @php
+                                $address_datas = json_decode($address->address_datas); 
+                                @endphp
+                                    @foreach($address_datas as $key =>  $datas) 
+                                            @php
+                                            $da = explode('|##|', $datas) 
+                                            @endphp
+                                             <li class="location">
+                                                <i class="{{ $da[0] }}"></i> {{ $da[1] }} 
+                                            </li>
+                                    @endforeach
+                            @else 
+                            <li>Data not found!</li>
+                             @endif 
                         </ul>
                     </div>
                 </div>
@@ -31,15 +32,17 @@
                         <h3>Useful links</h3>
 
                         <ul class="link">
-                            <li>
-                                <a href="{{ route('about') }}">About Us</a>
-                            </li>
-                            <li>
-                                <a href="practice-record.html">Practice Record</a>
-                            </li> 
-                            <li>
-                                <a href="practice-record.html">Practice Record</a>
-                            </li>
+                          @foreach($pages as $page)
+                                @if($page->type == 'footer')
+                                <li>
+                                    <a href="{{ route('page', $page->slug) }}">
+                                        {{ $page->title }}
+                                    </a>
+                                </li> 
+                                @else
+                                    not found!
+                                @endif
+                            @endforeach 
                         </ul>
                     </div>
                 </div>
@@ -49,12 +52,18 @@
                         <h3>Follow Us</h3>
 
                         <ul class="link">
-                            <li>
-                                <a href="www.facebook.com/music4band">Facebook</a>
-                            </li>
-                            <li>
-                                <a href="www.twitter.com/pdfbandmusic">Twitter</a>
-                            </li>
+                          @if(!empty($address) && $address->social_datas != "") 
+                                            @php
+                                             $socials = json_decode($address->social_datas); 
+                                            @endphp
+                                                @foreach($socials as $key =>  $datas)
+                                                    @foreach($datas as $key => $data) 
+                                                              <li><a href="{{ $data }}">{{ $key }}</a></li>
+                                                    @endforeach
+                                                @endforeach
+                                        @else
+                            <li>Data not found!</li>
+                             @endif  
                         </ul>
                     </div>
                 </div>

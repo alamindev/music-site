@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }} | @yield('title')</title>  
+    <title>{{ $setting->site_title }} | @yield('title')</title>  
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
@@ -47,5 +47,6 @@
     <script src="{{ asset('js/contact-form-script.js') }}"></script>
     <script src="{{ asset('js/jquery.ajaxchimp.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+      @yield('script')
 </body>
 </html>
