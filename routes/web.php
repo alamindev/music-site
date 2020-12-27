@@ -31,6 +31,10 @@ Route::get('/exercise', [App\Http\Controllers\StepController::class, 'exercise']
 Route::get('/viewer', [App\Http\Controllers\StepController::class, 'viewer'])->name('step.viewer');
 
 
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+});
+
 
 
 Route::get('/{slug?}', [App\Http\Controllers\PageController::class, 'index'])->name('page');
@@ -62,11 +66,22 @@ Route::group(['prefix' => 'admin'], function() {
 
     //for exercise
     Route::get('/exercise', [App\Http\Controllers\Admin\ExerciseController::class, 'index'])->name('exercise');
+    Route::get('/exercise/add-new', [App\Http\Controllers\Admin\ExerciseController::class, 'create'])->name('exercise.add');
     Route::post('/exercise/store', [App\Http\Controllers\Admin\ExerciseController::class, 'store'])->name('exercise.store');
     Route::get('/exercise/edit/{id}', [App\Http\Controllers\Admin\ExerciseController::class, 'edit'])->name('exercise.edit');
     Route::post('/exercise/update/{id}', [App\Http\Controllers\Admin\ExerciseController::class, 'update'])->name('exercise.update');
     Route::delete('/exercise/destroy/{id}', [App\Http\Controllers\Admin\ExerciseController::class, 'destroy'])->name('exercise.destroy');
-
+    //for url
+    Route::get('/url', [App\Http\Controllers\Admin\UrlController::class, 'index'])->name('url');
+    Route::get('/url/add-new', [App\Http\Controllers\Admin\UrlController::class, 'create'])->name('url.add');
+    Route::post('/url/store', [App\Http\Controllers\Admin\UrlController::class, 'store'])->name('url.store');
+    Route::get('/url/edit/{id}', [App\Http\Controllers\Admin\UrlController::class, 'edit'])->name('url.edit');
+    Route::post('/url/update/{id}', [App\Http\Controllers\Admin\UrlController::class, 'update'])->name('url.update');
+    Route::delete('/url/destroy/{id}', [App\Http\Controllers\Admin\UrlController::class, 'destroy'])->name('url.destroy');
+    //for Import data
+    Route::get('/import', [App\Http\Controllers\Admin\ImportController::class, 'index'])->name('import');
+    Route::post('/import/store', [App\Http\Controllers\Admin\ImportController::class, 'store'])->name('import.store');
+   
     //for social-address-info
     Route::get('/social-address-info', [App\Http\Controllers\Admin\SocialInfoController::class, 'index'])->name('socialinfos');
     Route::post('/social-address-info/update', [App\Http\Controllers\Admin\SocialInfoController::class, 'update'])->name('socialinfo.update');

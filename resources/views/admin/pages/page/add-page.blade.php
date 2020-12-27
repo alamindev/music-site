@@ -52,7 +52,9 @@
     </form>
 </div>
 @endsection
+
 @push('script') 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>    
 <script src="{{ asset('assets/js/lib/chosen/chosen.jquery.min.js') }}"></script>    
 <script>

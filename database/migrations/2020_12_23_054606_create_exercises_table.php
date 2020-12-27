@@ -15,11 +15,7 @@ class CreateExercisesTable extends Migration
     {
         Schema::create('exercises', function (Blueprint $table) {
             $table->id();
-            $table->string('exercise_name');
-            $table->string('code');
-            $table->string('type');
-            $table->bigInteger('horn_id')->unsigned()->index()->nullable();
-            $table->foreign('horn_id')->references('id')->on('horns')->onDelete('cascade');
+            $table->string('exercise_name');   
             $table->bigInteger('book_id')->unsigned()->index()->nullable();
             $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
          $table->timestamps();

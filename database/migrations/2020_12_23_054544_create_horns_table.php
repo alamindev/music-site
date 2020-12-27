@@ -15,9 +15,7 @@ class CreateHornsTable extends Migration
     {
         Schema::create('horns', function (Blueprint $table) {
             $table->id();
-            $table->string('horn_name');
-            $table->bigInteger('book_id')->unsigned()->index()->nullable();
-            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+            $table->string('horn_name'); 
             $table->timestamps();
         });
     }

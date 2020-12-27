@@ -4,17 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-class Horn extends Model
+use Maatwebsite\Excel\Concerns\ToModel;
+class Horn extends Model implements ToModel
 {
     use HasFactory;
 
-    public function book()
+    protected $fillable = ['horn_name'];
+    public function url()
     {
-        return $this->belongsTo(Book::class);
+        return $this->hasMany(Url::class);
     }
-      public function exercise()
+    /**
+    * @param array $row
+    *
+    * @return \Illuminate\Database\Eloquent\Model|null
+    */
+
+
+    public function model(array $row)
     {
-        return $this->hasMany(Exercise::class);
-    }
+        return new Horn([
+            'horn_name'     => $row[0],   
+        ]);
+    } 
 }

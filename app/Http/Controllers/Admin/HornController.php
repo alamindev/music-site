@@ -21,21 +21,17 @@ class HornController extends Controller
     public function index(Request $request)
     {
           if ($request->ajax()) {
-            $data = Horn::with('book')->latest()->get();
+            $data = Horn::latest()->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){ 
                     $btn = '<a href="javascript:void(0)"  data-remote='.route("instrument.destroy",$row->id).' class="delete btn btn-danger btn-sm">Delete</a> &nbsp; <a href="javascript:void(0)"  data-remote='.route("instrument.edit",$row->id).'  data-remote-update='.route("instrument.update",$row->id).' class="edit btn btn-info btn-sm">Edit</a>'; 
                     return $btn;
-                })
-                ->addColumn('book_name', function($row){ 
-                     return $row->book->name;
-                })
-                ->rawColumns(['action','book_name'])
+                }) 
+                ->rawColumns(['action'])
                 ->make(true);
-        }
-        $books   = Book::orderBy('created_at','desc')->get();
-        return view('admin.pages.instrument.instrument',compact('books'));
+        } 
+        return view('admin.pages.instrument.instrument');
     }
  
     /**
@@ -47,13 +43,11 @@ class HornController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'horn_name' => 'required',
-            'book_id' => 'required',  
+            'horn_name' => 'required', 
         ]);
 
          $horn = new Horn; 
-         $horn->horn_name  = $request->horn_name;
-         $horn->book_id  = $request->book_id;
+         $horn->horn_name  = $request->horn_name; 
          $horn->save();
 
          return redirect()->route('instrument');
@@ -68,13 +62,11 @@ class HornController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'horn_name' => 'required', 
-            'book_id' => 'required', 
+            'horn_name' => 'required',  
         ]);
 
          $horn = Horn::find($id); 
-         $horn->horn_name  = $request->horn_name;
-        $horn->book_id  = $request->book_id;
+         $horn->horn_name  = $request->horn_name; 
          $horn->save();
 
          return redirect()->route('instrument');
@@ -88,7 +80,7 @@ class HornController extends Controller
      */
     public function edit($id)
     {
-        $horn = Horn::with('book')->find($id);
+        $horn = Horn::find($id);
         if ($horn) { 
             $horn->get(); 
             return response()->json(['message' => 'success', 'data'=> $horn]);

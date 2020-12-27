@@ -24,20 +24,7 @@
                     @if($errors->has('horn_name'))
                         <div class="text-danger">{{ $errors->first('horn_name') }}</div>
                     @endif   
-                </div>  
-                <div class="form-group">
-                    <label for="book_id" class=" form-control-label">Book ID <span class="text-danger">*</span></label>
-                     <select name="book_id" id="book_id" class="form-control-sm form-control">
-                        <option value="">Please select book</option> 
-                        @foreach($books as $book) 
-                          <option value="{{ $book->id }}">{{ $book->name }}</option> 
-                        @endforeach
-                    </select>
-                @if($errors->has('book_id'))
-                        <div class="text-danger">{{ $errors->first('book_id') }}</div>
-                    @endif   
-                </div> 
-               
+                </div>   
                 <div class="p-2">
                     <button type="submit" class="btn btn-success btn-sm">
                        <i class="fa fa-plus"></i> Save
@@ -57,8 +44,7 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Instrument Name</th> 
-                <th>Book Name</th>  
+                <th>Instrument Name</th>  
                 <th>Action</th>
             </tr>
         </thead>
@@ -76,7 +62,7 @@
              <form id="update-instrument" action="" method="post"   class="form-horizontal"> 
                 @csrf 
                 <div class="modal-header d-flex">
-                    <h5 class="modal-title" id="smallmodalLabel">Update horn</h5>
+                    <h5 class="modal-title" id="smallmodalLabel">Update Instrument</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -85,16 +71,7 @@
                   <div class="form-group">
                     <label for="horn_name" class=" form-control-label">instrument Name <span class="text-danger">*</span></label>
                         <input type="text" id="horn_name" name="horn_name" class="form-control instrument_update" placeholder="instrument name" required>  
-                </div>  
-                <div class="form-group">
-                    <label for="book_id" class=" form-control-label">horn ID <span class="text-danger">*</span></label>
-                    <select name="book_id" id="book_id" class="update-select-horn form-control-sm form-control">
-                        <option value="">Please select book</option> 
-                        @foreach($books as $book) 
-                          <option value="{{ $book->id }}">{{ $book->name }}</option> 
-                        @endforeach
-                    </select>
-                </div> 
+                    </div>   
                 </div>
                 <div class="modal-footer">
                       <button type="Submit" class="btn btn-primary">Update</button>
@@ -122,8 +99,7 @@
         ajax: "{{ route('instrument') }}",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'}, 
-            {data: 'horn_name', name: 'horn_name'}, 
-            {data: 'book_name', name: 'book_name'}, 
+            {data: 'horn_name', name: 'horn_name'},  
             {
                 data: 'action', 
                 name: 'action', 
@@ -188,7 +164,7 @@
             $('#update').modal('show'); 
             $('#update-instrument').attr('action', update) 
             $('.instrument_update').val(data.data.horn_name) 
-            $('.update-select-horn').val(data.data.book.id).change();
+            
         } 
     });
     }); 

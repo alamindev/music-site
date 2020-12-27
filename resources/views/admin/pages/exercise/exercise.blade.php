@@ -10,74 +10,20 @@
 @section('content')
 <div class="content">
   <div class="row">
-  <div class="col-lg-4">
-     <div class="card">
-    <div class="card-header">
-      Add new exercise   
-    </div>
-        <div class="card-body card-block">
-            <form action="{{ route('exercise.store') }}" method="post"   class="form-horizontal"> 
-                @csrf 
-                <div class="form-group">
-                    <label for="exercise_name" class=" form-control-label">Exercise Name <span class="text-danger">*</span></label>
-                        <input type="text" id="exercise_name" name="exercise_name" class="form-control" placeholder="exercise name"> 
-                    @if($errors->has('exercise_name'))
-                        <div class="text-danger">{{ $errors->first('exercise_name') }}</div>
-                    @endif   
-                </div> 
-                <div class="form-group">
-                    <label for="code" class=" form-control-label">Music Code<span class="text-danger">*</span></label>
-                        <input type="text" id="code" name="code" class="form-control" placeholder="music code"> 
-                    @if($errors->has('code'))
-                        <div class="text-danger">{{ $errors->first('code') }}</div>
-                    @endif   
-                </div> 
-                 <div class="form-group">
-                    <label for="type" class=" form-control-label">Iframe site<span class="text-danger">*</span></label>
-                     <select name="type" id="type" class="form-control-sm form-control">
-                        <option value="0">flat.io</option>  
-                        <option value="1">sibl.pub</option>  
-                    </select>
-                    @if($errors->has('type'))
-                        <div class="text-danger">{{ $errors->first('type') }}</div>
-                    @endif   
-                </div> 
-                <div class="form-group">
-                    <label for="horn_id" class=" form-control-label">Horn ID <span class="text-danger">*</span></label>
-                     <select name="horn_id" id="horn_id" class="form-control-sm form-control">
-                        <option value="">Please select horn</option> 
-                        @foreach($horns as $horn) 
-                          <option value="{{ $horn->id }}">{{ $horn->horn_name }}</option> 
-                        @endforeach
-                    </select>
-                @if($errors->has('horn_id'))
-                        <div class="text-danger">{{ $errors->first('horn_id') }}</div>
-                    @endif   
-                </div> 
-               
-                <div class="p-2">
-                    <button type="submit" class="btn btn-success btn-sm">
-                       <i class="fa fa-plus"></i> Save
-                    </button> 
-                </div>
-            </form>
-        </div> 
-    </div>
-  </div>
-  <div class="col-lg-8">
-   <div class="card">
-    <div class="card-header">
-        List of exercise
+  
+  <div class="col-lg-12">
+   <div class="card"> 
+     <div class="card-header d-flex justify-content-between align-items-center">
+        <h3>    List of exercise  </h3>
+        <a class="btn btn-info" href="{{ route('exercise.add') }}">Add new</a>
     </div>
         <div class="card-body card-block">
              <table class="table table-bordered yajra-datatable" id="datatable">
         <thead>
             <tr>
                 <th>No</th>
-                <th>exercise Name</th> 
-                <th>Instrument</th> 
-                <th>Code</th> 
-                <th>Iframe</th> 
+                <th>Exercise Name</th>  
+                <th>Book Name</th>  
                 <th>Action</th>
             </tr>
         </thead>
@@ -95,35 +41,24 @@
              <form id="update-exercise" action="" method="post"   class="form-horizontal"> 
                 @csrf 
                 <div class="modal-header d-flex">
-                    <h5 class="modal-title" id="smallmodalLabel">Update horn</h5>
+                    <h5 class="modal-title" id="smallmodalLabel">Update Exercise</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body"> 
                   <div class="form-group">
-                    <label for="exercise_name" class=" form-control-label">exercise Name <span class="text-danger">*</span></label>
+                    <label for="exercise_name" class=" form-control-label">Exercise Name <span class="text-danger">*</span></label>
                         <input type="text" id="exercise_name" name="exercise_name" class="form-control exercise_update" placeholder="exercise name" required>  
-                </div> 
-                 <div class="form-group">
-                    <label for="code" class=" form-control-label">Music Code<span class="text-danger">*</span></label>
-                        <input type="text" id="code" name="code" class="form-control code" placeholder="music code">  
-                </div> 
-                <div class="form-group">
-                    <label for="horn_id" class=" form-control-label">horn ID <span class="text-danger">*</span></label>
-                     <select name="horn_id" id="horn_id" class="form-control-sm form-control update-select-horn" required>
-                        <option value="">Please select horn</option> 
-                        @foreach($horns as $horn) 
-                          <option value="{{ $horn->id }}">{{ $horn->horn_name }}</option> 
+                    </div>  
+                       <div class="form-group">
+                    <label for="book_id" class=" form-control-label">Book ID <span class="text-danger">*</span></label>
+                    <select name="book_id" id="book_id" class="update-select-exercise form-control-sm form-control">
+                        <option value="">Please select book</option> 
+                        @foreach($books as $book) 
+                          <option value="{{ $book->id }}">{{ $book->name }}</option> 
                         @endforeach
-                    </select> 
-                </div> 
-                 <div class="form-group">
-                    <label for="type" class=" form-control-label">Iframe site<span class="text-danger">*</span></label>
-                     <select name="type" id="type" class="form-control-sm form-control">
-                        <option value="0">flat.io</option>  
-                        <option value="1">sibl.pub</option>  
-                    </select>  
+                    </select>
                 </div> 
                 </div>
                 <div class="modal-footer">
@@ -152,10 +87,8 @@
         ajax: "{{ route('exercise') }}",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'}, 
-            {data: 'exercise_name', name: 'exercise_name'}, 
-            {data: 'horn_name', name: 'horn_name'}, 
-            {data: 'code', name: 'code'}, 
-            {data: 'type', name: 'type'}, 
+            {data: 'exercise_name', name: 'exercise_name'},  
+              {data: 'book_name', name: 'book_name'}, 
             {
                 data: 'action', 
                 name: 'action', 
@@ -220,8 +153,7 @@
             $('#update').modal('show'); 
             $('#update-exercise').attr('action', update) 
             $('.exercise_update').val(data.data.exercise_name)
-            $('.code').val(data.data.code)
-            $('.update-select-horn').val(data.data.horn.id).change();
+            $('.update-select-exercise').val(data.data.book.id).change();  
         } 
     });
     }); 

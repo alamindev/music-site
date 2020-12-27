@@ -14,6 +14,9 @@
                 <li class="{{ Route::is('exercise') ? 'active' : '' }}">
                     <a href="{{ route('exercise') }}"><i class="menu-icon fa fa-eercast"></i> Exercise </a>
                 </li> 
+                <li class="{{ Route::is('url') ? 'active' : '' }}">
+                    <a href="{{ route('url') }}"><i class="menu-icon fa fa-plus"></i> Add URL </a>
+                </li> 
                 <li class="{{ Route::is('banner') ? 'active' : '' }}">
                     <a href="{{ route('banner') }}"><i class="menu-icon fa fa-bandcamp"></i> Banner </a>
                 </li>  
@@ -26,7 +29,10 @@
                 <li class="{{ Route::is('setting') ? 'active' : '' }}">
                     <a href="{{ route('setting') }}"><i class="menu-icon fa fa-cogs"></i> Setting </a>
                 </li>   
+                {{--  <li class="{{ Route::is('import') ? 'active' : '' }}">
+                    <a href="{{ route('import') }}"><i class="menu-icon fa fa-upload"></i> Import </a>
+                </li>     --}}
             </ul>
-        </div><!-- /.navbar-collapse -->
+        </div> 
     </nav>
 </aside>

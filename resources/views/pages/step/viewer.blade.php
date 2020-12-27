@@ -8,18 +8,15 @@
             <div class="row">
                 <div class="col-lg-12">
                     @if(!empty($exercise))
-                       <div class="embed-responsive embed-responsive-16by9">
-                        @if($exercise->type == 0) 
-                            <iframe class="embed-responsive-item" src="https://flat.io/embed/{{ $exercise->code }}"></iframe> 
-                        @else
-                            <iframe class="embed-responsive-item" src="https://sibl.pub/{{ $exercise->code }}"></iframe> 
-                        @endif
+                       <div class="embed-responsive embed-responsive-16by9"> 
+                            <iframe  id="frame" class="embed-responsive-item" src="{{ $exercise->url }}"></iframe>  
                         </div>
                     @else
                         Not found! try again
                     @endif
-                </div>
+                </div> 
             </div>
         </div>
     </section>
 @endsection  
+ 
