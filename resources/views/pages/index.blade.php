@@ -2,33 +2,7 @@
 @section('title')
     Home
 @endsection
-@section('content')
-   <!-- Start Others Option For Responsive -->
-        <div class="others-option-for-responsive">
-            <div class="container">
-                <div class="dot-menu">
-                    <div class="inner">
-                        <div class="circle circle-one"></div>
-                        <div class="circle circle-two"></div>
-                        <div class="circle circle-three"></div>
-                    </div>
-                </div>
-
-                <div class="container">
-                    <div class="option-inner">
-                        <div class="others-option justify-content-center d-flex align-items-center">
-
-                            <div class="register">
-                                <a href="registration.html" class="default-btn">
-										Register Now
-									</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> 
-    </div>  
+@section('content') 
     <section class="banner-area f5f6fa-bg-color">
         <img class="banner-area-two-img" src="{{ asset('images/inner_hero_05.png') }}" alt="">
     @if(!empty($banner))

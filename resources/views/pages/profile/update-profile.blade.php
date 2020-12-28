@@ -3,7 +3,7 @@
     Profile
 @endsection
 @section('content')
-<div class="container" style="padding: 120px 0px 70px;">
+<div class="container px-3  px-md-0" style="padding: 120px 0px 70px;">
     <h1>Profile</h1>
     <form action="{{ route('profile.update.post') }}" method="post" enctype="multipart/form-data" >
      @csrf

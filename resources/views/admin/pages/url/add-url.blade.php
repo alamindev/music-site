@@ -27,9 +27,9 @@
                     @endif   
                 </div>  
                 <div class="form-group">
-                    <label for="instrument_id" class=" form-control-label">Book ID <span class="text-danger">*</span></label>
-                    <select name="instrument_id" id="instrument_id" class="form-control-sm form-control">
-                        <option value="">Please select book</option> 
+                    <label for="instrument_id" class=" form-control-label">Instrument<span class="text-danger">*</span></label>
+                    <select name="instrument_id" data-placeholder="Please select instrument..." id="instrument_id" class="form-control-sm form-control standardSelect">
+                        <option value="" label="default"></option> 
                         @foreach($horns as $horn) 
                           <option value="{{ $horn->id }}">{{ $horn->horn_name }}</option> 
                         @endforeach
@@ -39,9 +39,9 @@
                     @endif   
                 </div> 
                 <div class="form-group">
-                    <label for="exercise_id" class=" form-control-label">Exercise ID <span class="text-danger">*</span></label>
-                    <select name="exercise_id" id="exercise_id" class="form-control-sm form-control">
-                        <option value="">Please select Exercise</option> 
+                    <label for="exercise_id" class=" form-control-label">Exercise <span class="text-danger">*</span></label>
+                    <select name="exercise_id" data-placeholder="Please select exercise..." id="exercise_id" class="form-control-sm form-control standardSelect">
+                        <option value="" label="default"></option> 
                         @foreach($exercises as $exercise) 
                           <option value="{{ $exercise->id }}">{{ $exercise->exercise_name }}</option> 
                         @endforeach
@@ -65,4 +65,11 @@
 @endsection
  @push('script')   
        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
+       <script>
+          jQuery(".standardSelect").chosen({
+                disable_search_threshold: 10,
+                no_results_text: "Oops, nothing found!",
+                width: "100%"
+            });
+    </script>
 @endpush

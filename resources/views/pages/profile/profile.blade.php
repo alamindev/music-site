@@ -3,7 +3,7 @@
     Profile
 @endsection
 @section('content')
-<div class="container" style="padding: 120px 0px 70px;">
+<div class="container px-3  px-md-0" style="padding: 120px 0px 70px;">
     <h1>Profile</h1>
     <div class="row">
         <div class="col-md-4">
@@ -90,9 +90,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                
+                    @foreach($sessions as $session)
+                        <tr>
+                            <td>{{ \Carbon\Carbon::parse($session->created_at)->format('Y-m-d') }}</td>
+                            @php 
+                            $exercise_id = \App\Models\Url::where('id', $session->url_id)->first()->exercise_id;
+
+                            @endphp
+                            <td>{{ \App\Models\Exercise::where('id', $exercise_id)->first()->exercise_name }}</td>
+                            <td>{{ $session->minutes }}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
+            {{ $sessions->links() }}
         </div>
     </div>
 </div>

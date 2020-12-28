@@ -9,6 +9,8 @@ class Url extends Model implements ToModel
 {
     use HasFactory;
     protected $fillable = ['url','exercise_id','horn_id'];
+
+    
     public function exercise()
     {
         return $this->belongsTo(Exercise::class);

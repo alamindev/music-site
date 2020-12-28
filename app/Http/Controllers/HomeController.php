@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use App\Models\Session as userSession;
 class HomeController extends Controller
 {
     /**
@@ -38,7 +39,8 @@ class HomeController extends Controller
      */
     public function profile()
     {
-        return view('pages.profile.profile');
+        $sessions = userSession::where('user_id', auth()->user()->id)->paginate(15);
+        return view('pages.profile.profile',compact('sessions'));
     }
     /**
      * Show the application dashboard.

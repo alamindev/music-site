@@ -29,6 +29,7 @@ Route::get('/select-book', [App\Http\Controllers\StepController::class, 'index']
 Route::get('/instrument', [App\Http\Controllers\StepController::class, 'instrument'])->name('step.instrument');
 Route::get('/exercise', [App\Http\Controllers\StepController::class, 'exercise'])->name('step.exercise');
 Route::get('/viewer', [App\Http\Controllers\StepController::class, 'viewer'])->name('step.viewer');
+Route::post('/completed', [App\Http\Controllers\StepController::class, 'completed'])->name('step.completed');
 
 
 Route::get('/linkstorage', function () {

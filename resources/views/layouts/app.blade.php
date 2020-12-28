@@ -27,14 +27,15 @@
 <body>
     <div id="app">
           @include('layouts.header')
-        <main class="py-4">
+        <main class="py-4 ">
             @yield('content')
         </main>
           @include('layouts.footer')
     </div>
         <!-- Scripts -->
-    <script src="{{ asset('js/jquery-3.5.1.slim.min.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}" defer></script>   
+    <script src="{{ asset('js/jquery-3.5.1.slim.min.js') }}"></script> 
+    <script src="{{ asset('js/popper.min.js') }}" ></script>   
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>    
     <script src="{{ asset('js/jquery.meanmenu.js') }}"></script>
     <script src="{{ asset('js/wow.min.js') }}"></script>
     <script src="{{ asset('js/owl.carousel.js') }}"></script>

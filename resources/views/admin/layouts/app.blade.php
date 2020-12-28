@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/cs-skin-elastic.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/lib/chosen/chosen.min.css') }}">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -49,7 +50,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8" defer></script>
     @include('sweetalert::alert')
-     
+     <script src="{{ asset('assets/js/lib/chosen/chosen.jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script> 
    @stack('script')
 </body>

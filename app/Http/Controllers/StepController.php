@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Exercise;
 use App\Models\Horn;
-use App\Models\Url;
-use Illuminate\Http\Request;
+use App\Models\Session as userSession;
+use App\Models\Url; 
+use Illuminate\Http\Request; 
 
 class StepController extends Controller
 {
@@ -68,7 +69,34 @@ class StepController extends Controller
             $instrument_id = $request->query('instrument_id');
             $exercise_id = $request->query('exercise_id');
             $exercise = Url::where('exercise_id', $exercise_id)->where('horn_id', $instrument_id)->first();
-            return view('pages.step.viewer',compact('exercise'));
+
+            $next = '';
+            $previous = '';
+            $next = Url::where('exercise_id', $exercise_id)->where('id', '>' ,$exercise->id)->orderBy('id','asc')->first();
+            $previous = Url::where('exercise_id', $exercise_id)->where('id', '<' ,$exercise->id)->orderBy('id','desc')->first();
+
+
+            return view('pages.step.viewer',compact('exercise','next','previous'));
+        }else{
+            return redirect()->route('step.book');
+        } 
+       
+    }
+    /**
+     * store completed data
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function completed(Request $request)
+    {  
+        if($request->has('url_id')){ 
+            $session = new userSession;
+            $session->url_id = $request->url_id;
+            $session->minutes = $request->time;
+            $session->user_id = auth()->user()->id;
+            $session->save();
+            \Session::flash('success', 'Lession Completed successfully!');
+            return redirect()->route('step.book');
         }else{
             return redirect()->route('step.book');
         } 

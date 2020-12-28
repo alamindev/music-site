@@ -16,8 +16,10 @@ class CreateSessionsTable extends Migration
         Schema::create('sessions', function (Blueprint $table) {
             $table->id(); 
             $table->string('minutes'); 
-            $table->bigInteger('exercise_id')->unsigned()->index()->nullable();
-            $table->foreign('exercise_id')->references('id')->on('exercises')->onDelete('cascade'); 
+            $table->bigInteger('user_id')->unsigned()->index()->nullable();
+            $table->foreign('url_id')->references('id')->on('urls')->onDelete('cascade'); 
+            $table->bigInteger('url_id')->unsigned()->index()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); 
             $table->timestamps();
         });
     }
