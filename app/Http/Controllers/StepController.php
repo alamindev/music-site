@@ -22,7 +22,7 @@ class StepController extends Controller
      */
     public function index()
     { 
-        $books = Book::limit(2)->get();
+        $books = Book::orderBy('created_at','desc')->get();
         return view('pages.step.book',compact('books'));
     }
     /**
@@ -34,7 +34,7 @@ class StepController extends Controller
     { 
         if($request->has('book_id')){ 
             $instruments = Horn::get(); 
-            $book_id = $request->has('book_id');
+            $book_id = $request->book_id;
             return view('pages.step.instrument',compact('instruments','book_id'));
         }else{
             return redirect()->route('step.book');

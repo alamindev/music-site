@@ -25,7 +25,7 @@
                             <input type="hidden" name="instrument_id" value="{{ $previous->horn_id }}">
                             <input type="hidden" name="book_id" value="{{ app('request')->input('book_id') }}">
                             @endif
-                             <button @if(!$previous) disabled @endif  type="submit" class="btn btn-success">Previous</button>
+                             <button @if(!$previous) disabled @endif  type="submit" class="btn btn-info">Previous</button>
                         </form> 
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                             <input type="hidden" name="instrument_id" value="{{ $next->horn_id }}">
                             <input type="hidden" name="book_id" value="{{ app('request')->input('book_id') }}">
                             @endif   
-                             <button @if(!$next) disabled @endif  type="submit" class="btn btn-success">Next</button>
+                             <button @if(!$next) disabled @endif  type="submit" class="btn btn-info">Next</button>
                         </form> 
                     </div>
                 </div>

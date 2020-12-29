@@ -37,12 +37,16 @@ class LoginController extends Controller
             'email' => 'required',
             'password' => 'required'
         ]);
+        $remember_me = $request->has('remember') ? true : false;  
 
-       $credentials = $request->except(['_token']);
+        $userdata = [
+            'email'  => $request->email,
+            'password'  => $request->password
+        ];
 
         $user = User::where('email', $request->email)->where('is_admin', 1)->first();
         if($user){
-            if (auth()->attempt($credentials)) { 
+            if (auth()->attempt($userdata,$remember_me)) { 
                 return redirect()->route('admin.home'); 
             }else{
                 session()->flash('message', 'Invalid credentials!');

@@ -32,6 +32,7 @@ Route::get('/viewer', [App\Http\Controllers\StepController::class, 'viewer'])->n
 Route::post('/completed', [App\Http\Controllers\StepController::class, 'completed'])->name('step.completed');
 
 
+Route::get('/practice-record', [App\Http\Controllers\PracticeRecordController::class, 'index'])->name('practice_record');
 Route::get('/linkstorage', function () {
     Artisan::call('storage:link');
 });
@@ -72,6 +73,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/exercise/edit/{id}', [App\Http\Controllers\Admin\ExerciseController::class, 'edit'])->name('exercise.edit');
     Route::post('/exercise/update/{id}', [App\Http\Controllers\Admin\ExerciseController::class, 'update'])->name('exercise.update');
     Route::delete('/exercise/destroy/{id}', [App\Http\Controllers\Admin\ExerciseController::class, 'destroy'])->name('exercise.destroy');
+   
     //for url
     Route::get('/url', [App\Http\Controllers\Admin\UrlController::class, 'index'])->name('url');
     Route::get('/url/add-new', [App\Http\Controllers\Admin\UrlController::class, 'create'])->name('url.add');
@@ -79,6 +81,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/url/edit/{id}', [App\Http\Controllers\Admin\UrlController::class, 'edit'])->name('url.edit');
     Route::post('/url/update/{id}', [App\Http\Controllers\Admin\UrlController::class, 'update'])->name('url.update');
     Route::delete('/url/destroy/{id}', [App\Http\Controllers\Admin\UrlController::class, 'destroy'])->name('url.destroy');
+
     //for Import data
     Route::get('/import', [App\Http\Controllers\Admin\ImportController::class, 'index'])->name('import');
     Route::post('/import/store', [App\Http\Controllers\Admin\ImportController::class, 'store'])->name('import.store');
@@ -98,4 +101,14 @@ Route::group(['prefix' => 'admin'], function() {
 
     Route::get('/banner', [App\Http\Controllers\Admin\BannerController::class, 'index'])->name('banner');
     Route::post('/banner/update/{id?}', [App\Http\Controllers\Admin\BannerController::class, 'update'])->name('banner.update');
+
+
+    Route::get('/users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('users');
+    Route::get('/user/create', [App\Http\Controllers\Admin\UserController::class, 'create'])->name('user.create');
+    Route::post('/user/store', [App\Http\Controllers\Admin\UserController::class, 'store'])->name('user.store');
+    Route::get('/user/edit/{id}', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('user.edit');
+    Route::get('/user/view/{id}', [App\Http\Controllers\Admin\UserController::class, 'show'])->name('user.show');
+    Route::post('/user/update/{id}', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('user.update');
+    Route::delete('/user/destroy/{id}', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('user.destroy');
+  
 });

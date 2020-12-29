@@ -23,6 +23,9 @@
                  <li class="{{ (Route::is('pages') || Route::is('page.create')) ? 'active' : '' }}">
                     <a href="{{ route('pages') }}"><i class="menu-icon fa fa-address-book-o "></i> Pages </a>
                 </li>
+                 <li class="{{ (Route::is('users') || Route::is('user.create') || Route::is('user.view') || Route::is('user.edit'))  ? 'active' : '' }}">
+                    <a href="{{ route('users') }}"><i class="menu-icon fa fa-users "></i> Users </a>
+                </li>
                 <li class="{{ Route::is('socialinfos') ? 'active' : '' }}">
                     <a href="{{ route('socialinfos') }}"><i class="menu-icon fa fa-share-square-o "></i> Social & address </a>
                 </li> 

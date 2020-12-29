@@ -69,6 +69,11 @@
 								</a>
                             </li> 
                             <li class="nav-item">
+                                <a href="{{ route('practice_record') }}" class="nav-link">
+									Practice Record
+								</a>
+                            </li> 
+                            <li class="nav-item">
                                 <a href="{{ route('step.book') }}" class="nav-link">
 									Choose Exercises
 								</a>
